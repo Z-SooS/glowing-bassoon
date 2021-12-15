@@ -1,7 +1,7 @@
 import random
 
 def init_board():
-    pass
+    return [[".",".","."],[".",".","."],[".",".","."]]
 
 def display_board(board):
     print("# 1 | 2 | 3 ")
@@ -11,6 +11,6 @@ def display_board(board):
     pass
 
 
-board=[[".",".","."],[".",".","."],[".",".","."]]
-
+board=init_board()
+print(init_board())
 display_board(board)
