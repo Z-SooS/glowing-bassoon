@@ -1,25 +1,56 @@
 import random
 
 def init_board():
-    return [["A",".","."],[".",".","."],[".",".","."]]
+    return [[".",".","."],[".",".","."],[".",".","."]]
 
-def get_move(board):
+def get_input():
     inp=input("Input:").upper()
-    if len(inp)!=2:
-        print("Incorrect lenght!")
-        return get_move(board)
-    else:
-        if inp[0]=='A' or inp[0]=='B' or inp[0]=='C' and inp[1]=="1" or inp[1]=="2" or inp[1]=="3":
-            if board[inp[0]][inp[1]]!='.':
-                print("Already occupied")
-                return get_move(board)
+    if len(inp)==2:
+        if inp[0]=='A':
+            if inp[1]=="1":
+                return (0,0)
+            elif inp[1]=="2":
+                return (0,1)
+            elif inp[1]=="3":
+                return (0,2)
             else:
-                board[inp[0]][inp[1]]='X'
-                return board
+                print("Incorrect format!")
+                return get_input()
+        if inp[0]=='B':
+            if inp[1]=="1":
+                return (1,0)
+            elif inp[1]=="2":
+                return (1,1)
+            elif inp[1]=="3":
+                return (1,2)
+            else:
+                print("Incorrect format!")
+                return get_input()
+        if inp[0]=='C':
+            if inp[1]=="1":
+                return (2,0)
+            elif inp[1]=="2":
+                return (2,1)
+            elif inp[1]=="3":
+                return (2,2)
+            else:
+                print("Incorrect format!")
+                return get_input()
         else:
             print("Incorrect format!")
-            return get_move(board)
-    
+            return get_input()
+    else:
+        print("Incorrect lenght!")
+        return get_input()
+
+def get_move(board):
+    inp=get_input()
+    if board[inp[0]][inp[1]]!='.':
+        print("Already occupied")
+        return get_move(board)
+    else:
+        board[inp[0]][inp[1]]="X"
+        return board
 
 def display_board(board):
     print("# 1 | 2 | 3 ")
@@ -32,4 +63,5 @@ def display_board(board):
 board=init_board()
 #print(init_board())
 display_board(board)
-get_move(board)
+board=get_move(board)
+display_board(board)
