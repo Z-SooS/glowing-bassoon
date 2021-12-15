@@ -1,7 +1,25 @@
 import random
 
 def init_board():
-    return [[".",".","."],[".",".","."],[".",".","."]]
+    return [["A",".","."],[".",".","."],[".",".","."]]
+
+def get_move(board):
+    inp=input("Input:").upper()
+    if len(inp)!=2:
+        print("Incorrect lenght!")
+        return get_move(board)
+    else:
+        if inp[0]=='A' or inp[0]=='B' or inp[0]=='C' and inp[1]=="1" or inp[1]=="2" or inp[1]=="3":
+            if board[inp[0]][inp[1]]!='.':
+                print("Already occupied")
+                return get_move(board)
+            else:
+                board[inp[0]][inp[1]]='X'
+                return board
+        else:
+            print("Incorrect format!")
+            return get_move(board)
+    
 
 def display_board(board):
     print("# 1 | 2 | 3 ")
@@ -12,5 +30,6 @@ def display_board(board):
 
 
 board=init_board()
-print(init_board())
+#print(init_board())
 display_board(board)
+get_move(board)
