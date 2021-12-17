@@ -1,4 +1,30 @@
+import main
 import random
+
+def todo():
+    """
+    To-do:
+    separate get_move()                                 x
+    implement has_won(), returns bool                   x
+    implement is_full(), returns bool                   x
+    rename 'display_board' to 'print_board'                 O
+    implement print-result()                            x
+    remove get_player()                                     o
+    implement tictactoe_game(), 2 player,x starts       x
+
+    AI:                                         
+    'HUMAN-AI' and 'AI-HUMAN' arguments                 x
+    OPT - 'AI-AI' possible                              x
+    get_ai_move()                                       x
+    OPT - easy win,avoid losing                         x
+    OPT - unbeatable AI                                 x
+    implement main_menu()                               x
+
+
+    OPT-typing 'quit' exits the game anytime            x
+    """
+    pass
+
 
 def init_board():
     return [[".",".","."],[".",".","."],[".",".","."]]
@@ -80,26 +106,58 @@ def get_move(board):
 def mark(board,move,player):
     board[move[0]][move[1]]=player
     return board
-def display_board(board):
+def print_board(board):
     print("# 1 | 2 | 3 ")
     print(f"A {board[0][0]} | {board[0][1]} | {board[0][2]}")
     print(f"B {board[1][0]} | {board[1][1]} | {board[1][2]}")
     print(f"C {board[2][0]} | {board[2][1]} | {board[2][2]}")
     pass
-def get_player():
-    player=input("What player would you like to be?(X,O)?").upper()
-    return charcheck(player)
-def charcheck(player):
-    if len(player)==1 and (player=="X" or player=="O"):
-        return player
+
+def has_won(board,player):
+    return False
+
+def is_full(board):
+    return False
+
+def print_result(full,win,player):
+    if full==True:
+        print("It's a tie!")
+    elif win==True:
+        print(f"{player} has won!")
     else:
-        print("Incorrect character!")
-        return get_player()
+        pass
+            
+def change_player(player):
+    return 'X' if player=='O' else 'O'
+
+def tictactoe(human1=True,human2=True):         #True if human player, human1=x
+    board=init_board()
+    player='O'
+    full=False
+    win=False
+    while win==False and full==False:
+        if player=='O':
+            player='X'
+        else:
+            player='O'
+        print(f"Player {player} move:")
+        move=get_move(board)
+        board=mark(board,move,player)
+        win=has_won(board,player)
+        full=is_full(board)
+    print_result(full,win,player)
+    pass
+    
 
 
-board=init_board()
-player="X"
-display_board(board)
-move=get_move(board)
-board=mark(board,move,player)
-display_board(board)
+
+
+if __name__ == "__main__":
+    print(change_player('O'))
+    main.main_menu()
+    board=init_board()
+    player="X"
+    print_board(board)
+    move=get_move(board)
+    board=mark(board,move,player)
+    print_board(board)
