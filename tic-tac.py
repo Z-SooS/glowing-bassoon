@@ -6,11 +6,11 @@ def todo():
     To-do:
     separate get_move()                                 x
     implement has_won(), returns bool                   x
-    implement is_full(), returns bool                   x
+    implement is_full(), returns bool                       o
     rename 'display_board' to 'print_board'                 O
-    implement print-result()                            x
+    implement print-result()                                o
     remove get_player()                                     o
-    implement tictactoe_game(), 2 player,x starts       x
+    implement tictactoe_game(), 2 player,x starts           o
 
     AI:                                         
     'HUMAN-AI' and 'AI-HUMAN' arguments                 x
@@ -18,8 +18,8 @@ def todo():
     get_ai_move()                                       x
     OPT - easy win,avoid losing                         x
     OPT - unbeatable AI                                 x
+    
     implement main_menu()                               x
-
 
     OPT-typing 'quit' exits the game anytime            x
     """
@@ -114,10 +114,21 @@ def print_board(board):
     pass
 
 def has_won(board,player):
-    return False
+    if (board[0][0]==player and board[0][1]==player and board[0][2]==player)or(board[1][0]==player and board[1][1]==player and board[1][2]==player)or(board[2][0]==player and board[2][1]==player and board[2][2]==player):
+        return True
+    elif (board[0][0]==player and board[1][0]==player and board[2][0]==player)or(board[0][1]==player and board[1][1]==player and board[2][1]==player)or(board[0][2]==player and board[1][2]==player and board[2][2]==player):
+        return True
+    elif (board[0][0]==player and board[1][1]==player and board[2][2]==player)or(board[0][2]==player and board[1][1]==player and board[2][2]==player):
+        return True
+    else:
+        return False
 
 def is_full(board):
-    return False
+    for row in range(3):
+        for column in range(3):
+            if board[row][column]=='.':
+                return False
+    return True
 
 def print_result(full,win,player):
     if full==True:
@@ -125,7 +136,7 @@ def print_result(full,win,player):
     elif win==True:
         print(f"{player} has won!")
     else:
-        pass
+        print(f"{change_player(player)} has won!")
             
 def change_player(player):
     return 'X' if player=='O' else 'O'
@@ -136,10 +147,7 @@ def tictactoe(human1=True,human2=True):         #True if human player, human1=x
     full=False
     win=False
     while win==False and full==False:
-        if player=='O':
-            player='X'
-        else:
-            player='O'
+        player=change_player(player)
         print(f"Player {player} move:")
         move=get_move(board)
         board=mark(board,move,player)
@@ -153,7 +161,6 @@ def tictactoe(human1=True,human2=True):         #True if human player, human1=x
 
 
 if __name__ == "__main__":
-    print(change_player('O'))
     main.main_menu()
     board=init_board()
     player="X"
