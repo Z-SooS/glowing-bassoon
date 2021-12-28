@@ -1,4 +1,5 @@
 import tac
+import sys
 
 
 def getplayer():
@@ -40,4 +41,22 @@ def main_menu():
 
 
 if __name__ == "__main__":
-    main_menu()
+    print(len(sys.argv))
+    if len(sys.argv)==1:
+        main_menu()
+    elif len(sys.argv)==2 or len(sys.argv)>3:
+        raise Exception ("Not enough arguments")
+    else:
+        if sys.argv[1]=='human':
+            p1=True
+        elif sys.argv[1]=='ai':
+            p1=False
+        else:
+            raise Exception ("Incorrect argument")
+        if sys.argv[2]=='human':
+            p2=True
+        elif sys.argv[2]=='ai':
+            p2=False
+        else:
+            raise Exception ("Incorrect argument")
+        tac.tictactoe(p1,p2)

@@ -1,6 +1,7 @@
 import main
 import ai
 import random
+import time
 
 def todo():
     """
@@ -62,6 +63,7 @@ def print_board(board):
     print(f"A {board[0][0]} | {board[0][1]} | {board[0][2]}")
     print(f"B {board[1][0]} | {board[1][1]} | {board[1][2]}")
     print(f"C {board[2][0]} | {board[2][1]} | {board[2][2]}")
+    print()
     pass
 def has_won(board,player):
     if (board[0][0]==player and board[0][1]==player and board[0][2]==player)or(board[1][0]==player and board[1][1]==player and board[1][2]==player)or(board[2][0]==player and board[2][1]==player and board[2][2]==player):
@@ -102,6 +104,7 @@ def tictactoe(human1=True,human2=True):         #True if human player, human1=x
             move=get_move(board)
         else:
             move=ai.findBestMove(board,player)
+            time.sleep(1)
         board=mark(board,move,player)
         win=has_won(board,player)
         full=is_full(board)

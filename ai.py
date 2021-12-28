@@ -102,6 +102,6 @@ def findBestMove(board,player) :
                 if (moveVal > bestVal) :               
                     bestMove = (i, j)
                     bestVal = moveVal
-    print("The value of the best Move is :", bestVal)
-    print()
+    #print("The value of the best Move is :", bestVal)
+    #print()
     return bestMove
